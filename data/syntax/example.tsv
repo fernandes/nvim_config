@@ -1,0 +1,4 @@
+foo	bar	baz|;,	test	hello world	tsv
+1,2	1,7	2,7	a b c	"hello	again"	tsv
+";|,"	;|,	baz	test	"hello world"	tsv
+
