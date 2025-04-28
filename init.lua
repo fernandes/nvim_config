@@ -37,3 +37,7 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+-- require("base46").compile()
+-- require("base46").load_all_highlights()
+-- require("nvchad.utils").reload()

@@ -178,8 +178,11 @@ M.base46 = {
     -- NvimTree
     NvimTreeFolderName = { fg = "g5" },
     NvimTreeOpenedFolderName = { fg = "fg" },
-    NvimTreeSpecialFile = { fg = "bl" },
+    NvimTreeSpecialFile = { fg = "m" },
     NvimTreeFolderIcon = { fg = "m" },
+    NvimTreeGitNew = { fg = "by" },
+    NvimTreeEmptyFolderName = { link = "NvimTreeFolderName" },
+
 
     -- tree sitter
     -- ruby as base
@@ -215,6 +218,8 @@ M.base46 = {
     NvimTreeGitFolderStagedHL = { fg = "g" },
     NvimTreeGitFileStagedHL = { fg = "g" },
     NvimTreeNormal = { fg = "y", bg = "y" },
+    NvimTreeImageFile = { fg = "bbl" },
+    NvimTreeExecFile = { fg = "bc" },
 
     -- ruby
     rubyKeywordAsMethod = { fg = "w0" },
@@ -295,6 +300,13 @@ M.base46 = {
     gitconfigVariable = { fg = "m" },
     gitconfigAssignment = { fg = "w1" },
     gitconfigNone = { fg = "fg" },
+
+    -- DevIcons
+    DevIconDefault = { fg = "fg" },
+    DevIconErb = { fg = "r" },
+    DevIconRb = { fg = "bg" },
+    DevIconRakefile = { link = "DevIconRb" },
+    DevIconGemfile = { link = "DevIconRb" },
   },
 
   theme_toggle = { "onedark", "one_light" },
