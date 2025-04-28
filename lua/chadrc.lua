@@ -154,6 +154,27 @@ M.base46 = {
     ErrorMsg = { fg = "w2", bg = "r" },
     Cursor = { bg = "y" },
 
+    St_CommandMode = { bg = "g" },
+    St_CommandModeSep = { fg = "g" },
+    St_NormalMode = { bg = "m" },
+    St_NormalModeSep = { fg = "m" },
+    St_VisualMode = { bg = "by" },
+    St_VisualModeSep = { fg = "by" },
+    St_ReplaceMode = { bg = "y" },
+    St_ReplaceModeSep = { fg = "y" },
+    St_pos_icon = { bg = "g" },
+    St_pos_text = { fg = "g" },
+    St_pos_sep = { fg = "g" },
+    St_cwd_icon = { bg = "r" },
+    St_cwd_sep = { fg = "r" },
+    St_Lsp = { fg = "m" },
+    Added = { fg = "g" },
+    DiffAdded = { fg = "g" },
+    ["@diff.plus"] = { fg = "g" },
+    Removed = { fg = "r" },
+    DiffRemoved = { fg = "r" },
+    ["@diff.minus"] = { fg = "r" },
+
     -- NvimTree
     NvimTreeFolderName = { fg = "g5" },
     NvimTreeOpenedFolderName = { fg = "fg" },
@@ -179,6 +200,11 @@ M.base46 = {
     -- bash
     ["@keyword.directive"] = { fg = "comment" },
     ["@character"] = { fg = "w0" },
+
+    -- LSP
+    St_LspMsg = { fg = "g" },
+    St_LspInfo = { fg = "g" },
+    LspSignatureActiveParameter = { bg = "g" },
 	},
 
   hl_add = {
