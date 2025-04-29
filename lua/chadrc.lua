@@ -5,6 +5,10 @@
 ---@type ChadrcConfig
 local M = {}
 
+M.term = {
+  base46_colors = false
+}
+
 M.base46 = {
 	theme = "onedark",
 

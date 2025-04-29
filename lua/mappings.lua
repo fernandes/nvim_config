@@ -4,11 +4,16 @@ require "nvchad.mappings"
 -- add yours here
 
 local map = vim.keymap.set
+local nomap = vim.keymap.del
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>", { nowait = true, desc = "escape insert mode" })
 
 -- tmux navigator
+map("t", "<C-h>", "<Cmd>TmuxNavigateLeft<CR>", { desc = " " })
+map("t", "<C-k>", "<Cmd>TmuxNavigateUp<CR>", { desc = " " })
+map("t", "<C-j>", "<Cmd>TmuxNavigateDown<CR>", { desc = " " })
+map("t", "<C-l>", "<Cmd>TmuxNavigateRight<CR>", { desc = " " })
 map("n", "<C-h>", "<Cmd>TmuxNavigateLeft<CR>", { desc = " " })
 map("n", "<C-k>", "<Cmd>TmuxNavigateUp<CR>", { desc = " " })
 map("n", "<C-j>", "<Cmd>TmuxNavigateDown<CR>", { desc = " " })
@@ -37,3 +42,16 @@ map("n", "<leader>t4", ":tabn 4<CR>", { desc = " " })
 map("n", "<leader>t5", ":tabn 5<CR>", { desc = " " })
 map("n", "<leader>t6", ":tabn 6<CR>", { desc = " " })
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+
+-- term
+map({ "n", "t" }, "<leader>v", function()
+  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
+end, { desc = "terminal toggleable horizontal term" })
+
+map({ "n", "t" }, "<leader>l", function()
+  require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
+end, { desc = "terminal toggle floating term", silent = true })
+
+map("n", "<leader>h", function()
+  require("nvchad.term").new { pos = "sp" }
+end, { desc = "terminal new horizontal term" })

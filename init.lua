@@ -41,3 +41,22 @@ end)
 -- require("base46").compile()
 -- require("base46").load_all_highlights()
 -- require("nvchad.utils").reload()
+
+local colors = require("chadrc").base46.changed_themes.all.base_30
+
+vim.g.terminal_color_0 = colors.b
+vim.g.terminal_color_1 = colors.r
+vim.g.terminal_color_2 = colors.g
+vim.g.terminal_color_3 = colors.y
+vim.g.terminal_color_4 = colors.bl
+vim.g.terminal_color_5 = colors.m
+vim.g.terminal_color_6 = colors.c
+vim.g.terminal_color_7 = colors.w
+vim.g.terminal_color_8 = colors.bb
+vim.g.terminal_color_9 = colors.br
+vim.g.terminal_color_10 = colors.bgr
+vim.g.terminal_color_11 = colors.by
+vim.g.terminal_color_12 = colors.bbl
+vim.g.terminal_color_13 = colors.bm
+vim.g.terminal_color_14 = colors.bc
+vim.g.terminal_color_15 = colors.bw
