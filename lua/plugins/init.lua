@@ -24,12 +24,19 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
-      ensure_installed = { "html", "css", "bash", "javascript", "json", "markdown", "markdown_inline", "ruby" },
+      ensure_installed = {
+        "html",
+        "css",
+        "bash",
+        "javascript",
+        "json",
+        "markdown",
+        "markdown_inline",
+        "ruby",
+      },
       indent = {
         enable = true,
-        disable = {
-          "ruby",
-        },
+        disable = { "ruby" },
       },
       incremental_selection = {
         enable = true,
@@ -45,11 +52,18 @@ return {
 
   {
     "vim-ruby/vim-ruby",
-    event = "BufEnter *.rb,*.erb,config.ru,Gemfile",
+    lazy = false
   },
   {
     "tpope/vim-rails",
-    event = "BufEnter *.rb,*.erb,config.ru,Gemfile",
+    lazy = false
+  },
+  {
+    "Wansmer/treesj",
+    keys = {
+      { "<leader>j", "<cmd>TSJToggle<cr>", desc = "Join Toggle" },
+    },
+    opts = { use_default_keymaps = false, max_join_length = 1500 },
   },
 
   -- test new blink
