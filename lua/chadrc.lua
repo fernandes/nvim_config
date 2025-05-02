@@ -158,6 +158,10 @@ M.base46 = {
     ErrorMsg = { fg = "w2", bg = "r" },
     Cursor = { bg = "y" },
 
+    -- quickfix
+    QuickFixLine = { bg = "b" },
+    qfLineNr = { fg = "bb" },
+
     St_CommandMode = { bg = "g" },
     St_CommandModeSep = { fg = "g" },
     St_NormalMode = { bg = "m" },
@@ -203,6 +207,8 @@ M.base46 = {
 		["@number"] = { fg = "y" },
 		["@function.call"] = { fg = "w5" },
 		["@variable.parameter"] = { fg = "g5" },
+    ["@module"] = { link = "Type" },
+    ["@function.builtin"] = { fg = "bbl" },
 
     -- bash
     ["@keyword.directive"] = { fg = "comment" },

@@ -1,13 +1,13 @@
 class RepeatedSubstring
   def find_repeated_substring(s)
     # catch the edge cases
-    return 'NONE' if s == ''
+    return "NONE" if s == ""
     # check if the string consists of only one character => "aaaaaa" => "a"
-    return s.split('').uniq[0] if s.split('').uniq.length == 1
+    return s.split("").uniq[0] if s.split("").uniq.length == 1
 
     searched = []
     longest_prefix = 0
-    long_prefix = ''
+    long_prefix = ""
     (0..s.length - 1).each do |i|
       next if searched.include? s[i]
 
@@ -24,15 +24,15 @@ class RepeatedSubstring
       end
     end
     # if prefix == "       " it is a invalid sequence
-    return 'NONE' if long_prefix.strip.empty?
+    return "NONE" if long_prefix.strip.empty?
 
     long_prefix
   end
 
   def get_prefix(s1, s2)
-    prefix = ''
+    prefix = ""
     min_length = [s1.length, s2.length].min
-    return '' if s1.nil? || s2.nil?
+    return "" if s1.nil? || s2.nil?
 
     (0..min_length - 1).each do |i|
       return prefix if s1[i] != s2[i]
@@ -51,6 +51,6 @@ class RepeatedSubstring
   end
 
   def find_repeated_substring_file(file_path)
-    File.open(file_path).read.each_line.map { |line| find_repeated_substring(line) }
+    File.read(file_path).each_line.map { |line| find_repeated_substring(line) }
   end
 end

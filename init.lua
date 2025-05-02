@@ -60,3 +60,11 @@ vim.g.terminal_color_12 = colors.bbl
 vim.g.terminal_color_13 = colors.bm
 vim.g.terminal_color_14 = colors.bc
 vim.g.terminal_color_15 = colors.bw
+
+-- treesitter folding
+-- https://github.com/nvim-treesitter/nvim-treesitter#folding
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+vim.cmd [[set nofoldenable]]
+
+require "configs.mason"

@@ -52,11 +52,11 @@ return {
 
   {
     "vim-ruby/vim-ruby",
-    lazy = false
+    lazy = false,
   },
   {
     "tpope/vim-rails",
-    lazy = false
+    lazy = false,
   },
   {
     "Wansmer/treesj",
@@ -65,31 +65,99 @@ return {
     },
     opts = { use_default_keymaps = false, max_join_length = 1500 },
   },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle" },
+    ft = { "markdown" },
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  },
 
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
+  {
+    "dhruvasagar/vim-table-mode",
+    cmd = { "TableModeToggle", "TableModeEnable", "TableModeDisable" },
+    keys = {
+      { "<leader>tm", "<cmd>TableModeToggle<cr>", desc = "Table Mode Toggle" },
+    },
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function(_, opts)
+      dofile(vim.g.base46_cache .. "treesitter")
+      require("nvim-treesitter.configs").setup {
+        ensure_installed = {
+          "bash",
+          "c",
+          "css",
+          "html",
+          "javascript",
+          "json",
+          "lua",
+          "luadoc",
+          "make",
+          "markdown",
+          "markdown_inline",
+          "printf",
+          "query",
+          "ruby",
+          "vim",
+          "vimdoc",
+        },
+        highlight = {
+          enable = true,
+          -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+          -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+          -- Using this option may slow down your editor, and you may see some duplicate highlights.
+          -- Additional languages for code blocks
+          -- additional_vim_regex_highlighting = { "markdown" },
+          additional_vim_regex_highlighting = false,
+        },
+      }
+    end,
+  },
+  {
+    "dinhhuy258/git.nvim",
+    event = "VeryLazy",
+    cond = function()
+      return vim.fs.dirname(vim.fs.find('.git', { path = "./", upward = true })[1])
+    end,
+    opts = {
+      default_mappings = true, -- NOTE: `quit_blame` and `blame_commit` are still merged to the keymaps even if `default_mappings = false`
 
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  --   event = { "BufReadPost", "BufNewFile" },
-  --   config = function()
-  --     dofile(vim.g.base46_cache .. "treesitter")
-  --     require("nvim-treesitter.configs").setup({
-  --       highlight = {
-  --         enable = true,
-  --         -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-  --         -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-  --         -- Using this option may slow down your editor, and you may see some duplicate highlights.
-  --         -- Instead of true it can also be a list of languages
-  --         additional_vim_regex_highlighting = false,
-  --       }
-  --     })
-  --   end,
-  -- 	-- opts = {
-  -- 	-- 	ensure_installed = {
-  -- 	-- 	 "vim", "lua", "vimdoc",
-  -- 	--     "ruby", "html", "css"
-  -- 	-- 	},
-  -- 	-- },
-  -- },
+      keymaps = {
+        -- Open blame window
+        blame = "<Leader>gb",
+        -- Close blame window
+        quit_blame = "q",
+        -- Open blame commit
+        blame_commit = "<CR>",
+        -- Quit blame commit
+        quit_blame_commit = "q",
+        -- Open file/folder in git repository
+        browse = "<Leader>go",
+        -- Open pull request of the current branch
+        open_pull_request = "<Leader>gp",
+        -- Create a pull request with the target branch is set in the `target_branch` option
+        create_pull_request = "<Leader>gn",
+        -- Opens a new diff that compares against the current index
+        diff = "<Leader>gd",
+        -- Close git diff
+        diff_close = "<Leader>gD",
+        -- Revert to the specific commit
+        revert = "<Leader>gr",
+        -- Revert the current file to the specific commit
+        revert_file = "<Leader>gR",
+      },
+      -- Default target branch when create a pull request
+      target_branch = "master",
+      -- Private gitlab hosts, if you use a private gitlab, put your private gitlab host here
+      private_gitlabs = { "https://xxx.git.com" },
+      -- Enable winbar in all windows created by this plugin
+      winbar = false,
+    },
+  },
 }

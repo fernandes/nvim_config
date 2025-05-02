@@ -57,5 +57,70 @@ end
 
 lspconfig.ruby_lsp.setup {
   capabilities = capabilities,
-  on_attach = my_on_attach
+  on_attach = my_on_attach,
 }
+
+lspconfig.markdown_oxide.setup {
+  capabilities = vim.tbl_deep_extend("force", capabilities, {
+    workspace = {
+      didChangeWatchedFiles = {
+        dynamicRegistration = true,
+      },
+    },
+  }),
+  ---@diagnostic disable-next-line:unused-local
+  on_attach = function(client, bufnr)
+    -- refresh codelens on TextChanged and InsertLeave as well
+    vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave", "CursorHold", "LspAttach" }, {
+      buffer = bufnr,
+      callback = vim.lsp.codelens.refresh,
+    })
+
+    -- trigger codelens refresh
+    vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
+
+    -- setup conceallevel to enable it in obsidian.nvim
+    vim.opt.conceallevel = 2
+
+    -- sometimes it doesn't work twice on same buffer
+    -- open a new buffer and run Daily again
+    vim.api.nvim_create_user_command("Daily", function(args)
+      local input = { "today" }
+      if args.args ~= "" then
+        input = { args.args or "today" }
+      end
+
+      vim.lsp.buf_request(bufnr, "workspace/executeCommand", {
+        command = "jump",
+        arguments = input,
+      }, function(err, result)
+        if result then
+          vim.print(result)
+        end
+        if err then
+          vim.print(err)
+          vim.notify("Jump failed: " .. err.message, vim.log.levels.ERROR)
+        end
+      end)
+    end, { desc = "Open daily note", nargs = "*" })
+  end,
+}
+
+-- lspconfig.marksman.setup {
+--   -- capabilities = capabilities,
+--   -- on_attach = my_on_attach
+--   capabilities = vim.tbl_deep_extend("force", capabilities, {
+--     textDocument = {
+--       formatting = {
+--         dynamicRegistration = true,
+--       },
+--     },
+--   }),
+--   on_attach = function(client, bufnr)
+--     client.server_capabilities.documentFormattingProvider = true
+--     -- Enable formatting
+--     vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format, { buffer = bufnr, desc = "Format Markdown" })
+--     vim.keymap.set("n", "<leader>gh", vim.lsp.buf.hover, { buffer = bufnr, desc = "Hover Markdown" })
+--     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code Action Markdown" })
+--   end,
+-- }
