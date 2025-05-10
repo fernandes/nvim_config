@@ -20,36 +20,6 @@ return {
     lazy = false,
   },
 
-  -- this opts will extend the default opts
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "html",
-        "css",
-        "bash",
-        "javascript",
-        "json",
-        "markdown",
-        "markdown_inline",
-        "ruby",
-      },
-      indent = {
-        enable = true,
-        disable = { "ruby" },
-      },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<C-space>",
-          node_incremental = "<C-space>",
-          scope_incremental = false,
-          node_decremental = "<bs>",
-        },
-      },
-    },
-  },
-
   {
     "vim-ruby/vim-ruby",
     lazy = false,
@@ -107,6 +77,10 @@ return {
           "vim",
           "vimdoc",
         },
+        indent = {
+          enable = true,
+          disable = { "ruby", "markdown" },
+        },
         highlight = {
           enable = true,
           -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
@@ -116,6 +90,15 @@ return {
           -- additional_vim_regex_highlighting = { "markdown" },
           additional_vim_regex_highlighting = false,
         },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = "<C-space>",
+            node_incremental = "<C-space>",
+            scope_incremental = false,
+            node_decremental = "<bs>",
+          },
+        },
       }
     end,
   },
@@ -123,7 +106,7 @@ return {
     "dinhhuy258/git.nvim",
     event = "VeryLazy",
     cond = function()
-      return vim.fs.dirname(vim.fs.find('.git', { path = "./", upward = true })[1])
+      return vim.fs.dirname(vim.fs.find(".git", { path = "./", upward = true })[1])
     end,
     opts = {
       default_mappings = true, -- NOTE: `quit_blame` and `blame_commit` are still merged to the keymaps even if `default_mappings = false`

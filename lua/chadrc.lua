@@ -1,16 +1,16 @@
--- This file needs to have same structure as nvconfig.lua 
+-- This file needs to have same structure as nvconfig.lua
 -- https://github.com/NvChad/ui/blob/v3.0/lua/nvconfig.lua
--- Please read that file to know all available options :( 
+-- Please read that file to know all available options :(
 
 ---@type ChadrcConfig
 local M = {}
 
 M.term = {
-  base46_colors = false
+  base46_colors = false,
 }
 
 M.base46 = {
-	theme = "onedark",
+  theme = "onedark",
 
   changed_themes = {
     all = {
@@ -26,7 +26,7 @@ M.base46 = {
         b5 = "#43464e", -- charcoal
 
         g0 = "#4e505b", -- davy's gray
-        g1 = "#5a5b68", -- davy's gray 
+        g1 = "#5a5b68", -- davy's gray
         g2 = "#656575", -- dim gray
         g3 = "#6c6c7c", -- dim gray
         g4 = "#737382", -- slate gray
@@ -103,7 +103,6 @@ M.base46 = {
         lightbg = "#41434f",
         pmenu_bg = "#b389ef",
         folder_bg = "#BD93F9",
-
       },
       base_16 = {
         base00 = "#373B41", -- default background
@@ -129,11 +128,11 @@ M.base46 = {
 
         base07 = "#F8F8F0", -- comments
         base0F = "#F5FAFF", -- main foreground,
-      }
-    }
+      },
+    },
   },
 
-	hl_override = {
+  hl_override = {
     -- neovim
     Normal = { fg = "fg", bg = "bg" },
     Conditional = { fg = "m" },
@@ -144,7 +143,7 @@ M.base46 = {
     Keyword = { fg = "m" },
     PreProc = { fg = "by" },
     Special = { fg = "bm" },
-    SpecialChar = { fg = "br"},
+    SpecialChar = { fg = "br" },
     Statement = { fg = "m" },
     StorageClass = { fg = "bm" },
     String = { fg = "br" },
@@ -191,22 +190,21 @@ M.base46 = {
     NvimTreeGitNew = { fg = "by" },
     NvimTreeEmptyFolderName = { link = "NvimTreeFolderName" },
 
-
     -- tree sitter
     -- ruby as base
-		["@keyword"] = { fg = "m" },
-		["@keyword.function"] = { fg = "m" },
-		["@function"] = { fg = "w" },
-		["@comment"] = { fg = "bb" },
-		["@keyword.return"] = { fg = "m" },
-		["@string"] = { fg = "br" },
-		["@keyword.conditional"] = { fg = "m" },
-		["@variable"] = { fg = "g5" },
-		["@punctuation.delimiter"] = { fg = "y" },
-		["@punctuation.bracket"] = { fg = "by" },
-		["@number"] = { fg = "y" },
-		["@function.call"] = { fg = "w5" },
-		["@variable.parameter"] = { fg = "g5" },
+    ["@keyword"] = { fg = "m" },
+    ["@keyword.function"] = { fg = "m" },
+    ["@function"] = { fg = "w" },
+    ["@comment"] = { fg = "bb" },
+    ["@keyword.return"] = { fg = "m" },
+    ["@string"] = { fg = "br" },
+    ["@keyword.conditional"] = { fg = "m" },
+    ["@variable"] = { fg = "g5" },
+    ["@punctuation.delimiter"] = { fg = "y" },
+    ["@punctuation.bracket"] = { fg = "by" },
+    ["@number"] = { fg = "y" },
+    ["@function.call"] = { fg = "w5" },
+    ["@variable.parameter"] = { fg = "g5" },
     ["@module"] = { link = "Type" },
     ["@function.builtin"] = { fg = "bbl" },
 
@@ -218,7 +216,10 @@ M.base46 = {
     St_LspMsg = { fg = "g" },
     St_LspInfo = { fg = "g" },
     LspSignatureActiveParameter = { bg = "g" },
-	},
+
+    --- markdown
+    ObsidianTag = { fg = "by" },
+  },
 
   hl_add = {
     -- neovim
@@ -287,7 +288,7 @@ M.base46 = {
     jsonQuote = { fg = "m" },
     jsonKeywordMatch = { fg = "y" },
     jsonNumber = { fg = "y" },
-    ["@property.json"] = { link = "jsonKeyword"},
+    ["@property.json"] = { link = "jsonKeyword" },
     ["@constant.builtin.json"] = { fg = "w1" },
 
     -- js
@@ -317,6 +318,10 @@ M.base46 = {
     DevIconRb = { fg = "bg" },
     DevIconRakefile = { link = "DevIconRb" },
     DevIconGemfile = { link = "DevIconRb" },
+
+    -- markdown
+    ["@keyword.directive.markdown"] = { fg = "m" },
+    ["@markup.link.markdown_inline"] = { fg = "by" },
   },
 
   theme_toggle = { "onedark", "one_light" },
