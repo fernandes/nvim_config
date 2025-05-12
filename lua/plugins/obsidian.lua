@@ -1,4 +1,5 @@
 local colors = require("chadrc").base46.changed_themes.all.base_30
+local obsidian_vault_folder = "/Users/fernandes/Library/Mobile Documents/iCloud~md~obsidian/Documents/Second Brain/"
 
 return {
   "obsidian-nvim/obsidian.nvim",
@@ -8,11 +9,18 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
+  cond = function()
+    if vim.fn.isdirectory(obsidian_vault_folder) ~= 0 then
+      return true
+    else
+      return false
+    end
+  end,
   opts = {
     workspaces = {
       {
         name = "Second Brain",
-        path = "/Users/fernandes/Library/Mobile Documents/iCloud~md~obsidian/Documents/Second Brain/",
+        path = obsidian_vault_folder,
       },
     },
     notes_subdir = "inbox",
