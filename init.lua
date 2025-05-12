@@ -2,7 +2,46 @@ vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 vim.g.mapleader = " "
 
 -- :h clipboard-osc52
-vim.g.clipboard = 'osc52'
+-- https://github.com/neovim/neovim/discussions/28010#discussioncomment-9877494
+-- using
+-- vim.g.clipboard = 'osc52'
+-- would set paste function to read from OSC52, but terminal usually does not allow
+-- givin some errors, so adding the function paste and using it, allows nvim to
+-- paste after reading it
+vim.o.clipboard = "unnamedplus"
+local function paste()
+  return {
+    vim.fn.split(vim.fn.getreg(""), "\n"),
+    vim.fn.getregtype(""),
+  }
+end
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ["+"] = paste,
+    ["*"] = paste,
+  },
+}
+if vim.env.TMUX ~= nil then
+  local copy = {'tmux', 'load-buffer', '-w', '-'}
+  local paste = {'bash', '-c', 'tmux refresh-client -l && sleep 0.05 && tmux save-buffer -'}
+  vim.g.clipboard = {
+    name = 'tmux',
+    copy = {
+      ['+'] = copy,
+      ['*'] = copy,
+    },
+    paste = {
+      ['+'] = paste,
+      ['*'] = paste,
+    },
+    cache_enabled = 0,
+  }
+end
 
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
