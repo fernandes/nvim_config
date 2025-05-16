@@ -43,6 +43,9 @@ map("n", "<leader>t5", ":tabn 5<CR>", { desc = " " })
 map("n", "<leader>t6", ":tabn 6<CR>", { desc = " " })
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
+-- obsidian
+map("n", "<leader>ot", ":ObsidianToggleCheckbox<CR>", { desc = " " })
+
 -- term
 map({ "n", "t" }, "<leader>v", function()
   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
